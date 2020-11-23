@@ -136,4 +136,24 @@ Second scenario only possible if $R_0 > 1$
 
 P(major outbreak)= τ∗ for Reed-Frost model
 
+## Extensions
+Random infectious force (e.g. length of infectious period): affects P(outbreak) but hardly final size τ
+
+Latent period: big effect on timing of epidemic peak and duration of epidemic but no effect on final size (unless control measures are initiated)
+
+More than one index case: big effect on P(outbreak) but negligible effect on final size τ in large outbreak
+
+### Exercise 3
+TODO:
+
+Initial fraction of immune: If there is a fraction r of initially immunes the same methodology can be used. The difference is that R0 is replaced by R0(1 − r) since initially only the fraction
+(1 − r ) is susceptible. The final fraction infected among the initally susceptible then solves
+
+### Exercise 4 
+Compute τ∗ if initially only 50% were susceptible (and 50% were immune), for R0 = 1.5, 3 and 6.
+
+
+### Exercise 5 
+What are the overall fractions infected during outbreak in later case?
+
 
