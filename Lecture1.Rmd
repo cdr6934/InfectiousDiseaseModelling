@@ -1,0 +1,139 @@
+---
+title: "Lecture 1: "
+output: html_notebook
+---
+
+## Mathematical Modelling 
+The slides can be found [here](https://github.com/hoehleatsu/mt3002-summer2020)
+
+## Stochastic models 
+
+
+### SEIR 
+Susceptible 
+Exposed / Latent (infceted bu not yet infectious)
+Infectious
+Removed (Recovered and immune)
+
+### SIS
+Susceptible 
+Infectious
+Removed (Recovered and immune)
+
+### SIRS 
+Susceptible 
+Infectious
+Removed (Recovered and immune)
+Susceptible 
+
+### SIR
+Susceptible 
+Infectious
+Removed (Recovered and immune)
+
+Some of the STDs, influenza, COVID-19 
+
+
+## Notation 
+n=# - individuals (n(t) if varying for over time)
+S(t) - susceptibles 
+I(t) - infectives (infectous individuals) at time t 
+R(t) = removed 
+T = the ime when the epidemic stops 
+Z (= R(T)-1) = # infected during the epidemic (excluding the index case)
+
+## Reed-Frost Stochastic Epidemic model 
+
+* Short term outbreak (fixed community), homogeneous community, uniform mixing, SIR, discrete time 
+
+A epidemic model: 
+* Assume 1 index case (external infected) the rest n-1 susceptible
+* Anyoe who gets infected infects other susceptibles independently with prob p and then recovers
+* A recovered individual plays no further roles in epidemic 
+
+The index case infects a random number (Bin(n01,p)) of individuals, they in turn infect an additional random number, and so on. Once no new individuals are infected the epidemic stops. 
+
+
+### Exercise 1 
+Suppose n = 3 ( one index case and 2 susceptibles) and p=0.2 
+
+Possible values for Z: 0,1,2. 
+
+$P(Z=0)$? For this to happen the index can't infect anyone. 
+$$
+P(Z=0)=(1-p)^2=0.64
+$$
+$$P(Z = 1)$$? For this to happen the index must infect EXACTLY one AND this individual cannot infect anyone further
+$$
+P(Z=1)=(2p1)p(1-p)* (1-p)
+$$
+
+$$P(Z = 2)$$? Either the index infects exactly one AND this individual infects the last one, OR the index infects both
+
+
+### What about larger communities? 
+Underlying reason for the complication: individuals' outcome are dependent! 
+
+
+### Approximations when n large 
+When R_0 = 0.8 
+
+Very small outbreaks 
+
+When R_0 = 1.5
+We see a rather large amount of 600 
+
+## An approximation for the final size 
+
+
+$R_0=1$ is a threshold value 
+
+We now derive an equation for $\tau$ heuristically (recall $p =\frac{R_0}{n}$)
+Assume n large and let $\tau$= Z /n = final fraction infected
+
+* 1.1 $1-\tau$ = probability not infected 
+  * 1.2 which is also the probability not getting infected 
+  * 1.3 probability to escape infected from all infected 
+* 1.4 = $(1-p)^Z$
+* 1.5 = $(1-\frac{R_0}{n})^{n\tau}$
+
+
+### Compute $\rhoz*$ numerically when $R_0$ = 1.5, 3, 6
+```{r}
+r_not <- 1.5
+tau <- 1
+exp(-r_not*tau)
+
+```
+
+## Approximation, cont'd
+
+## What about epidemic over time? 
+
+A related stochastic epidemic model (the ”General stochastic epidemic”) can be defined in continuous time:
+
+* During the infectious period an individual has ”infectious contacts” randomly in time at the average rate $\beta$, each time individual is chosen randomly
+
+* A susceptible who receives an infectious contact becomes infectious and remains so for a exponentially distributed time with mean ν (other contacts have no effect)
+
+$R_0$ = expected number of infectious contacts = $\beta\mu$
+
+## Plots of simulated stocastic epidemic and deterministic curve 
+
+The slides show the plots between the two types of models but as N increases the closer the stocastic and deterministic models become the same 
+
+## Summary 
+Exact distribution of Z (final size) is complicated
+
+When n large two things may happen:
+* either very few get infected (Z /n ≈ 0), or
+* a close to deterministic fraction Z/n ≈ τ∗ get infected
+
+
+$R_0 = np =  \beta v$ = expected number of infections by one individual during his/her infectious period
+
+Second scenario only possible if $R_0 > 1$ 
+
+P(major outbreak)= τ∗ for Reed-Frost model
+
+
